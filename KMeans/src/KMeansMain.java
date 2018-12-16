@@ -21,9 +21,40 @@ public class KMeansMain {
 Map<Integer,List<Integer>>		hartaPuncte=getInitialPointsMap(puncte,0);
 		
 		for(;unclusteredPointsRemain(hartaPuncte,0);) {
-			
+			addClosestPointToRespectiveClusterAndUpdateCluster();
 		}
 		
+		
+	}
+
+	private static void addClosestPointToRespectiveClusterAndUpdateCluster() {
+Entry<Integer, List<Integer>> pair;
+pair=		addClosestPointToCluster();
+int cluster=pair.getKey();
+List lastPoint=pair.getValue();
+		updateCluster(cluster,lastPoint);
+		
+	}
+
+	private static Entry<Integer, List<Integer>> addClosestPointToCluster() {
+		
+		// Optional
+		sortPoints(points);
+		
+		Set<Integer,List<List<Integer>> distanceToClusterCenter=
+				getClusterDistances();
+		
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static void sortPoints() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void updateCluster(int cluster, List lastPoint) {
+		// TODO Auto-generated method stub
 		
 	}
 
