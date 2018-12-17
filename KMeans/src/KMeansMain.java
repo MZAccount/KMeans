@@ -21,31 +21,56 @@ public class KMeansMain {
 Map<Integer,List<Integer>>		hartaPuncte=getInitialPointsMap(puncte,0);
 		
 		for(;unclusteredPointsRemain(hartaPuncte,0);) {
-			addClosestPointToRespectiveClusterAndUpdateCluster();
+			addClosestPointToRespectiveClusterAndUpdateCluster(hartaPuncte);
 		}
 		
 		
 	}
 
-	private static void addClosestPointToRespectiveClusterAndUpdateCluster() {
+	private static void addClosestPointToRespectiveClusterAndUpdateCluster(Map<Integer, List<Integer>> hartaPuncte) {
 Entry<Integer, List<Integer>> pair;
-pair=		addClosestPointToCluster();
+pair=		addClosestPointToCluster(hartaPuncte);
 int cluster=pair.getKey();
 List lastPoint=pair.getValue();
 		updateCluster(cluster,lastPoint);
 		
 	}
 
-	private static Entry<Integer, List<Integer>> addClosestPointToCluster() {
+	private static Entry<Integer, List<Integer>> addClosestPointToCluster(Set<Integer, List<Integer>> hartaPuncte) {
 		
 		// Optional
 		sortPoints(points);
 		
+		List< List<Integer>> puncte=getUnsortedSet(hartaPuncte);
+		
+		List< List<Integer>> centre=getCenters(hartaPuncte);
 		Set<Integer,List<List<Integer>> distanceToClusterCenter=
-				getClusterDistances();
+				getClusterDistances(puncte,centre);
 		
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	private static  List<List<Integer>> getClusterDistances(List<List<Integer>> puncte,
+			List<List<Integer>> centre) {
+		
+		for (List<Integer> punct : puncte) {
+			for (List<Integer> centru : centre) {
+				distante.add(distance(punct,centru));			}
+		}
+		
+		return null;
+	}
+
+	private static Integer distance(List<Integer> punct, List<Integer> centru) {
+		Integer rez = 0;
+		assert punct.size()==centru.size();
+		int i=0;
+		for (Integer integer : punct) {
+			rez+=(int)Math.pow(integer-centru.get(i),2);
+			i++;
+		}
+		return (int) Math.sqrt(rez);
 	}
 
 	private static void sortPoints() {
